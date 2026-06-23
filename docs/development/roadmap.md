@@ -53,9 +53,9 @@ runtime-prerequisites, typecheck, format-check, tests 모두 passed.
       계약, `ServerEvent` SSE discriminated union까지 완료. 실제 SSE 전송·구독은
       NestJS API 생성 후 연결)
 - [x] CI에서 typecheck와 테스트 실행 (`.github/workflows/ci.yml`: push/PR마다 install →
-      typecheck → test → format:check → check:boundaries. 이 저장소는 이번에 `git init`했고
-      GitHub remote는 아직 없어서 실제 GitHub Actions 실행은 remote 연결 후 첫 push에서
-      확인해야 한다)
+      typecheck → test → format:check → check:boundaries. GitHub remote(`newrec07/US_UNIV`)
+      연결 후 실제 Actions 실행에서 통과 확인함 — 최초 실행은 Linux 러너에 `powershell`이
+      없어 실패했고, architecture-boundaries 단계만 `pwsh`로 직접 실행하도록 고친 뒤 통과)
 
 ## Phase 2 — 규칙 엔진 신뢰성
 
