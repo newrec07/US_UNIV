@@ -29,4 +29,5 @@ jobs:
 
       - run: pnpm format:check
 
-      - run: pnpm check:boundaries
+      - name: check:boundaries
+        run: pwsh -NoProfile -ExecutionPolicy Bypass -File scripts/harness/Check-ArchitectureBoundaries.ps1
