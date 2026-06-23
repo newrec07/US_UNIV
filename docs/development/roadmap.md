@@ -59,14 +59,23 @@ runtime-prerequisites, typecheck, format-check, tests 모두 passed.
 
 ## Phase 2 — 규칙 엔진 신뢰성
 
-- [ ] 학년과 admissions cycle 테스트
-- [ ] Action 우선순위와 동점 정책
-- [ ] completeness typed rule
-- [ ] 타임라인 상태 계산
-- [ ] GPA 참고 환산 검증
-- [ ] 연도별 FAFSA SAI 공식 엔진
-- [ ] CSS Profile 추정 엔진 분리
-- [ ] net price 입력 검증과 버전 추적
+- [x] 학년과 admissions cycle 테스트 (grade-level은 기존 테스트 유지, admissions-cycle.test.ts 추가)
+- [x] Action 우선순위와 동점 정책 (deadline 점수 동점 시 tie-break, impact 우선순위, foundational
+      보너스, overdue 가중치, accepted/in_progress 활성 상태까지 테스트 보강)
+- [x] completeness typed rule (7개 section의 empty/partial/sufficient/complete 전이와
+      blocksAssessment 플래그 테스트 추가)
+- [x] 타임라인 상태 계산 (`computeMilestoneStatus()` 신규 — 날짜로부터 upcoming/approaching/
+      due_soon/overdue를 계산하고 completed/skipped/not_applicable은 그대로 통과시킨다.
+      milestone 간 의존성·분기 갱신은 Phase 3 `generateTimeline()`에서 다룬다)
+- [x] GPA 참고 환산 검증 (NCEA/IB_7/UK_ALEVEL/PERCENTAGE 전 구간과 US_GPA_4 패스스루 테스트)
+- [ ] 연도별 FAFSA SAI 공식 엔진 — [[ADR-006-financial-estimate-display-policy]] 참고. 공식
+      연도별 발표 자료(출처·발표일) 없이는 구현하지 않는다. `experimental-sai-estimate.ts`는
+      placeholder로 유지하고 테스트만 추가했다.
+- [ ] CSS Profile 추정 엔진 분리 — 위와 동일한 이유로 미구현. 입력 구조와 신뢰도 표시 방식부터
+      설계해야 한다.
+- [x] net price 입력 검증과 버전 추적 (`computeNetPrice()`에 `basedOnDataVersion`/`calculatedAt`
+      추가, `isNetPriceStale()` 신규, `NetPriceBreakdown`에도 동일 필드 반영. full need/gapping/
+      merit/self-help/경계값 테스트 추가)
 
 ## Phase 3 — Timeline과 Action 큐
 

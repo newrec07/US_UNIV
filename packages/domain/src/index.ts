@@ -37,3 +37,4 @@ export * from './rules/admissions-cycle.js';
 export * from './rules/finance/net-price.js';
 export * from './rules/finance/experimental-sai-estimate.js';
 export * from './rules/proposed-command-staleness.js';
+export * from './rules/timeline-status.js';

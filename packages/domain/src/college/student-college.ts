@@ -24,4 +24,7 @@ export interface NetPriceBreakdown {
   estimatedMeritAid?: number;
   estimatedSelfHelp?: number;
   estimatedNetPrice?: number;
+  /** SystemMeta.dataVersion this breakdown was calculated against, to detect staleness. */
+  basedOnDataVersion: string;
+  calculatedAt: string;
 }

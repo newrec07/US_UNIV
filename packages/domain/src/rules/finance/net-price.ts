@@ -15,9 +15,16 @@ export interface NetPriceResult {
   estimatedSelfHelp: number;
   estimatedNetPrice: number;
   gap: number;
+  /** SystemMeta.dataVersion this calculation was based on, to detect staleness later. */
+  basedOnDataVersion: string;
+  calculatedAt: string;
 }
 
-export function computeNetPrice(input: NetPriceInput): NetPriceResult {
+export function computeNetPrice(
+  input: NetPriceInput,
+  basedOnDataVersion: string,
+  now: Date,
+): NetPriceResult {
   assertNonNegative(input.collegeCOA, 'collegeCOA');
   assertNonNegative(input.estimatedMeritAward ?? 0, 'estimatedMeritAward');
 
@@ -43,7 +50,21 @@ export function computeNetPrice(input: NetPriceInput): NetPriceResult {
     estimatedSelfHelp,
     estimatedNetPrice,
     gap,
+    basedOnDataVersion,
+    calculatedAt: now.toISOString(),
   };
+}
+
+/**
+ * True when SystemMeta.dataVersion has moved on since this net price was
+ * calculated, meaning the College's cost/aid data or the student's SAI input
+ * may already be out of date.
+ */
+export function isNetPriceStale(
+  result: Pick<NetPriceResult, 'basedOnDataVersion'>,
+  currentDataVersion: string,
+): boolean {
+  return result.basedOnDataVersion !== currentDataVersion;
 }
 
 function assertNonNegative(value: number, name: string): void {
