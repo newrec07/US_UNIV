@@ -1,0 +1,11 @@
+node_modules
+dist
+build
+coverage
+.next
+.git
+.harness
+.tools
+docs/archive
+pnpm-lock.yaml
+apps/web/next-env.d.ts

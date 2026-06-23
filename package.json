@@ -1,0 +1,22 @@
+{
+  "name": "admissions-os",
+  "private": true,
+  "packageManager": "pnpm@11.8.0",
+  "engines": {
+    "node": ">=22.13"
+  },
+  "scripts": {
+    "check:boundaries": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/harness/Check-ArchitectureBoundaries.ps1",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "build": "pnpm -r --if-present build",
+    "typecheck": "pnpm run build && pnpm -r --if-present typecheck",
+    "test": "pnpm run build && pnpm -r --if-present test",
+    "lint": "pnpm -r --if-present lint",
+    "verify": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/harness/Invoke-HarnessVerification.ps1 -Mode full",
+    "verify:quick": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/harness/Invoke-HarnessVerification.ps1 -Mode quick"
+  },
+  "devDependencies": {
+    "prettier": "latest"
+  }
+}

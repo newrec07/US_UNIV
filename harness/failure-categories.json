@@ -1,0 +1,32 @@
+{
+  "categories": [
+    {
+      "id": "environment",
+      "description": "Required runtime or executable is unavailable."
+    },
+    {
+      "id": "configuration",
+      "description": "A project configuration file is invalid."
+    },
+    {
+      "id": "architecture",
+      "description": "A package dependency or domain policy boundary was violated."
+    },
+    {
+      "id": "typecheck",
+      "description": "TypeScript static verification failed."
+    },
+    {
+      "id": "format",
+      "description": "Formatting verification failed."
+    },
+    {
+      "id": "test",
+      "description": "A deterministic test failed."
+    },
+    {
+      "id": "state",
+      "description": "Harness task or dirty-state metadata could not be read."
+    }
+  ]
+}

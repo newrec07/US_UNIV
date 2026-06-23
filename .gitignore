@@ -1,0 +1,14 @@
+node_modules/
+dist/
+build/
+coverage/
+.next/
+*.tsbuildinfo
+.env
+.env.*
+!.env.example
+CLAUDE.local.md
+.claude/settings.local.json
+.harness/runs/
+.harness/state/
+.tools/
