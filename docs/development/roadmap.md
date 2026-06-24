@@ -68,11 +68,14 @@ runtime-prerequisites, typecheck, format-check, tests 모두 passed.
       due_soon/overdue를 계산하고 completed/skipped/not_applicable은 그대로 통과시킨다.
       milestone 간 의존성·분기 갱신은 Phase 3 `generateTimeline()`에서 다룬다)
 - [x] GPA 참고 환산 검증 (NCEA/IB_7/UK_ALEVEL/PERCENTAGE 전 구간과 US_GPA_4 패스스루 테스트)
-- [ ] 연도별 FAFSA SAI 공식 엔진 — [[ADR-006-financial-estimate-display-policy]] 참고. 공식
-      연도별 발표 자료(출처·발표일) 없이는 구현하지 않는다. `experimental-sai-estimate.ts`는
-      placeholder로 유지하고 테스트만 추가했다.
-- [ ] CSS Profile 추정 엔진 분리 — 위와 동일한 이유로 미구현. 입력 구조와 신뢰도 표시 방식부터
-      설계해야 한다.
+- [x] 연도별 FAFSA SAI 공식 엔진 — `sai-formula-a-2025-26.ts`: 공식 "2025-26 SAI and Pell Grant
+      Eligibility Guide"(미국 교육부, 2024-07) Formula A 표를 그대로 구현(Table A1/A2/A5,
+      사업·농장 net worth 조정, 학생 분담률). 근로소득≈AGI 근사 등 남은 단순화가 있어
+      `usableForFinancialDecision`은 여전히 `false` — [[ADR-006-financial-estimate-display-policy]].
+      2026-27 연도 표 추가, 근로소득 별도 입력 등은 다음 슬라이스.
+- [ ] CSS Profile 추정 엔진 분리 — College Board가 정확한 Institutional Methodology 공식을
+      공개하지 않아(학교마다 다름) "그 CSS Profile 공식"이 존재하지 않는다. 일반 원칙만으로
+      흉내 내는 엔진을 만들지, 입력만 수집하고 계산은 안 할지 제품 결정이 필요하다.
 - [x] net price 입력 검증과 버전 추적 (`computeNetPrice()`에 `basedOnDataVersion`/`calculatedAt`
       추가, `isNetPriceStale()` 신규, `NetPriceBreakdown`에도 동일 필드 반영. full need/gapping/
       merit/self-help/경계값 테스트 추가)
