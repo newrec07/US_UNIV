@@ -1,5 +1,12 @@
 {
   "permissions": {
+    "allow": [
+      "PowerShell(pnpm verify)",
+      "PowerShell(pnpm format:check)",
+      "PowerShell(pnpm check:boundaries)",
+      "PowerShell(pnpm --filter * typecheck*)",
+      "PowerShell(pnpm --filter * test*)"
+    ],
     "deny": [
       "Read(./**/node_modules/**)",
       "Read(./**/dist/**)",
